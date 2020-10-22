@@ -11,102 +11,104 @@ key = 0
 oldKey = 0
 speed = 255
 
-m = motorControl()
-m.begin()
+try:
 
-print('Press ESC to exit')
+    m = motorControl()
+    m.begin()
 
-while key != chr(27): #ESC
+    print('Press ESC to exit')
 
-    key = sys.stdin.read(1)[0]
-    m.run()
-        
-    if key != oldKey:
+    while key != chr(27):  # ESC
 
-        # Stop
-        if key == 's':
-            m.setSpeed(0, 0)
-            m.setSpeed(1, 0)
-            m.setSpeed(2, 0)
-            m.setSpeed(3, 0)
+        key = sys.stdin.read(1)[0]
+        m.run()
 
+        if key != oldKey:
 
-        # Move forward
-        if key == 'w':
-            m.setSpeed(0, speed)
-            m.setSpeed(1, speed)
-            m.setSpeed(2, speed)
-            m.setSpeed(3, speed)
+            # Stop
+            if key == 's':
+                m.setSpeed(0, 0)
+                m.setSpeed(1, 0)
+                m.setSpeed(2, 0)
+                m.setSpeed(3, 0)
 
-        # Move backwards
-        if key == 'x':
-            m.setSpeed(0, -speed)
-            m.setSpeed(1, -speed)
-            m.setSpeed(2, -speed)
-            m.setSpeed(3, -speed)
+            # Move forward
+            if key == 'w':
+                m.setSpeed(0, speed)
+                m.setSpeed(1, speed)
+                m.setSpeed(2, speed)
+                m.setSpeed(3, speed)
 
-        # Move forward at 45 degree angle to the right
-        if key == 'e':
-            m.setSpeed(0, speed)
-            m.setSpeed(1, 0)
-            m.setSpeed(2, speed)
-            m.setSpeed(3, 0)
+            # Move backwards
+            if key == 'x':
+                m.setSpeed(0, -speed)
+                m.setSpeed(1, -speed)
+                m.setSpeed(2, -speed)
+                m.setSpeed(3, -speed)
 
-        # Move backwards at 45 degree angle to the left
-        if key == 'z':
-            m.setSpeed(0, -speed)
-            m.setSpeed(1, 0)
-            m.setSpeed(2, -speed)
-            m.setSpeed(3, 0)
+            # Move forward at 45 degree angle to the right
+            if key == 'e':
+                m.setSpeed(0, speed)
+                m.setSpeed(1, 0)
+                m.setSpeed(2, speed)
+                m.setSpeed(3, 0)
 
-        # Move forward at 45 degree angle to the left
-        if key == 'q':
-            m.setSpeed(0, 0)
-            m.setSpeed(1, speed)
-            m.setSpeed(2, 0)
-            m.setSpeed(3, speed)
+            # Move backwards at 45 degree angle to the left
+            if key == 'z':
+                m.setSpeed(0, -speed)
+                m.setSpeed(1, 0)
+                m.setSpeed(2, -speed)
+                m.setSpeed(3, 0)
 
-        # Move backwards at 45 degree angle to the right
-        if key == 'c':
-            m.setSpeed(0, 0)
-            m.setSpeed(1, -speed)
-            m.setSpeed(2, 0)
-            m.setSpeed(3, -speed)
+            # Move forward at 45 degree angle to the left
+            if key == 'q':
+                m.setSpeed(0, 0)
+                m.setSpeed(1, speed)
+                m.setSpeed(2, 0)
+                m.setSpeed(3, speed)
 
-        # Strafe right
-        if key == 'd':
-            m.setSpeed(0, speed)
-            m.setSpeed(1, -speed)
-            m.setSpeed(2, speed)
-            m.setSpeed(3, -speed)
+            # Move backwards at 45 degree angle to the right
+            if key == 'c':
+                m.setSpeed(0, 0)
+                m.setSpeed(1, -speed)
+                m.setSpeed(2, 0)
+                m.setSpeed(3, -speed)
 
-        # Strafe left
-        if key == 'a':
-            m.setSpeed(0,- speed)
-            m.setSpeed(1, speed)
-            m.setSpeed(2, -speed)
-            m.setSpeed(3, speed)
+            # Strafe right
+            if key == 'd':
+                m.setSpeed(0, speed)
+                m.setSpeed(1, -speed)
+                m.setSpeed(2, speed)
+                m.setSpeed(3, -speed)
 
-        # Turn left
-        if key == 'h':
-            m.setSpeed(0, speed)
-            m.setSpeed(1, speed)
-            m.setSpeed(2, -speed)
-            m.setSpeed(3, -speed)
+            # Strafe left
+            if key == 'a':
+                m.setSpeed(0, - speed)
+                m.setSpeed(1, speed)
+                m.setSpeed(2, -speed)
+                m.setSpeed(3, speed)
 
-        # Turn right
-        if key == 'g':
-            m.setSpeed(0, -speed)
-            m.setSpeed(1, -speed)
-            m.setSpeed(2, speed)
-            m.setSpeed(3, speed)
+            # Turn left
+            if key == 'h':
+                m.setSpeed(0, speed)
+                m.setSpeed(1, speed)
+                m.setSpeed(2, -speed)
+                m.setSpeed(3, -speed)
 
-        oldKey = key
+            # Turn right
+            if key == 'g':
+                m.setSpeed(0, -speed)
+                m.setSpeed(1, -speed)
+                m.setSpeed(2, speed)
+                m.setSpeed(3, speed)
 
-m.setSpeed(0, 0)
-m.setSpeed(1, 0)
-m.setSpeed(2, 0)
-m.setSpeed(3, 0)
+            oldKey = key
 
-m.close()
-termios.tcsetattr(sys.stdin, termios.TCSADRAIN, orig_settings)
+    m.setSpeed(0, 0)
+    m.setSpeed(1, 0)
+    m.setSpeed(2, 0)
+    m.setSpeed(3, 0)
+
+finally:
+    m.close()
+    termios.tcsetattr(sys.stdin, termios.TCSADRAIN, orig_settings)
